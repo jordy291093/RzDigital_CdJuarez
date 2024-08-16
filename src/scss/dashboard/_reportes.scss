@@ -1,0 +1,42 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.no-clientes {
+    a {
+        color: v.$rojo;
+    }
+}
+.listado-clientes {
+    list-style: none;
+    padding: 0;
+    margin-top: 3rem;
+    @include m.grid(1, 2rem);
+    @include m.tablet {
+        @include m.grid(2, 2rem);
+    }
+    @include m.desktop {
+        @include m.grid(4, 2rem);
+    }
+
+    .cliente {
+        background-color: lighten(v.$rojo, 5%);
+        min-width: 3rem;
+        min-height: 3rem;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        padding: 2rem;
+        line-height: 2rem;
+
+        &:hover {
+            background-color: darken(v.$rojo, 5%);
+        }
+        
+        a {
+            color: v.$blanco;
+            font-weight: bold;
+        }
+    }
+}

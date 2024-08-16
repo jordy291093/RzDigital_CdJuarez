@@ -1,0 +1,63 @@
+@use 'base/variables' as v;
+
+.tabla {
+    display: none;
+    margin-top: 3rem;
+
+    &.mostrar {
+        display: block;
+    }
+    
+    table {
+        text-align: center;
+        thead {
+            background-color: v.$rojo;
+            color: v.$blanco;
+            tr {
+                th {
+                    padding: .5rem 1rem;
+                }
+            }
+        }
+        tbody {
+            background-color: lighten(v.$gris, 30%);
+            tr {
+                td {
+                    padding: .5rem 1rem;
+                }
+            }
+        }
+    }
+
+    button {
+        border: none;
+        font-size: 1.3rem;
+        padding: .5rem 1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 1rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.estado-informe {
+            margin: 2rem 1rem;
+
+            &.entregado {
+                background-color: v.$verde;
+                color: v.$blanco;
+            }
+            &.pendiente {
+                background-color: v.$naranja;
+                color: v.$blanco;
+            }
+        }
+    }
+    td.pointer:hover {
+        cursor: pointer;
+        color: v.$blanco;
+        background-color: v.$rojo;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,22 @@
+@use 'base/variables' as v;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    padding: 1rem;
+
+    p {
+        margin: 0;
+
+        a {
+            color: v.$rojo;
+        }
+    }
+}
+
+.contenido {
+    .footer {
+        margin-top: 2rem;
+    }
+}

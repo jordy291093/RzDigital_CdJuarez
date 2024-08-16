@@ -1,0 +1,44 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario {
+    margin-top: 5rem;
+
+    .grid {
+        @include m.tablet {
+            @include m.grid(2, 2rem);
+        }
+    }
+    .campo {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+
+        .fa-regular {
+            right: 1rem;
+            position: absolute;
+            font-size: 2rem;
+            color: v.$negro;
+            cursor: pointer;
+        }
+        
+        label {
+            flex: 0 0 10rem;
+        }
+        input,
+        textarea {
+            width: 100%;
+            flex: 1;
+            padding: 1rem;
+            border-radius: .5rem;
+            background-color: lighten(v.$gris, 50%);
+        }
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.sidebar {
+    background-color: v.$blanco;
+    padding: 2rem;
+    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, .6);
+    h2 {
+        color: v.$rojo;
+        margin: 0;
+        text-align: center;
+
+        span {
+            color: v.$negro;
+        }
+    }
+    p {
+        text-align: center;
+        margin: 1rem 0;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: v.$negro;
+    }
+    .sidebar-nav {
+        margin-top: 3rem;
+        a {
+            color: v.$rojo;
+            display: block;
+            margin: 1rem 0;
+            padding: .5rem;
+            transition-property: background-color;
+            transition-duration: 300ms;
+            text-transform: uppercase;
+            font-weight: bold;
+
+            &:hover,
+            &.activo {
+                background-color: darken(v.$rojo, 10%);
+                color: v.$blanco;
+                border-radius: .5rem;
+            }
+        }
+
+        .separador {
+            border-bottom: 2px solid v.$grisOscuro;
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+}

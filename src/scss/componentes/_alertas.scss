@@ -1,0 +1,29 @@
+@use 'base/variables' as v;
+
+.alerta {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: .5rem;
+    text-transform: uppercase;
+    position: relative;
+
+    &.error {
+        background-color: lighten(v.$rojo, 60%);
+        border-left: 2.5rem solid v.$rojo;
+        color: v.$rojo;
+    }
+    &.exito {
+        background-color: lighten(v.$verde, 60%);
+        border-left: 2.5rem solid v.$verde;
+        color: v.$verde;
+    }
+    .fa-solid {
+        font-size: 1.5rem;
+        color: v.$blanco;
+        position: absolute;
+        left: -1.8rem;
+    }
+}
