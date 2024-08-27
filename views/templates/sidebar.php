@@ -8,9 +8,9 @@
             <a class="<?php echo ($titulo === 'Crear Reporte') ? 'activo' : ''; ?>" href="/crear-cliente">Crear Reporte</a>
         </div>
         
-        <div class="separador">
-            <a class="<?php echo ($titulo === 'Contadores') ? 'activo' : ''; ?>" href="/dashboard/contadores">Contadores</a>
-        </div>
+        <!-- <div class="separador">
+            <a class="<//?php echo ($titulo === 'Contadores') ? 'activo' : ''; ?>" href="/dashboard/contadores">Contadores</a>
+        </div> -->
 
         <!-- <div class="separador">
             <a class="<//?php echo ($titulo === 'Lecturas') ? 'activo' : ''; ?>" href="/dashboard">Lecturas</a>
@@ -20,11 +20,10 @@
         <div class="separador">
             <a class="<//?php echo ($titulo === 'Pendientes') ? 'activo' : ''; ?>" href="/dashboard">Pendientes</a>
             <a class="<//?php echo ($titulo === 'Crear Pendientes') ? 'activo' : ''; ?>" href="/crear-cliente">Crear Pendientes</a>
-        </div>
+        </div> -->
         
         <div class="separador">
-            <a class="<//?php echo ($titulo === 'Vehiculo') ? 'activo' : ''; ?>" href="/dashboard">Vehiculo</a>
-            <a class="<//?php echo ($titulo === 'Crear Vehiculo') ? 'activo' : ''; ?>" href="/crear-cliente">Crear Vehiculo</a>
-        </div> -->
+            <a class="<?php echo ($titulo === 'Vehículo') ? 'activo' : ''; ?>" href="/dashboard/vehiculo">Servicio Vehicular</a>
+        </div>
     </nav>
 </aside>

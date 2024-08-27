@@ -60,6 +60,7 @@ class InformeController {
     public static function actualizar() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
+            
             $id = $_POST['clientes_id'];
             $cliente = Cliente::where('url', $id);
 
@@ -72,14 +73,14 @@ class InformeController {
                 return;
             }
 
-            $infomre = new Informe($_POST);
-            $infomre->clientes_id = $cliente->id;
+            $informe = new Informe($_POST);
+            $informe->clientes_id = $cliente->id;
 
-            $resultado = $infomre->guardar();
+            $resultado = $informe->guardar();
             if($resultado) {
                 $respuesta = [
                     'tipo' => 'exito',
-                    'id' => $infomre->id,
+                    'id' => $informe->id,
                     'clientes_id' => $cliente->id,
                     'mensaje' => 'Actualizado Correctamente'
                 ];

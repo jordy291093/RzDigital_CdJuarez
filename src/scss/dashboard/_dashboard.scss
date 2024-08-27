@@ -23,16 +23,12 @@
     }
     .boton {
         display: inline-flex;
+        justify-content: center;
         background-color: v.$rojo;
     }
-
-    .formulario {
-        input:not([type="submit"]) {
-            background-color: v.$blanco;
-        }
-        input[type="submit"] {
-            @include m.boton(v.$azul, v.$blanco);
-        }
+    .agregar {
+        display: inline-flex;
+        @include m.boton(v.$azul, v.$blanco);
     }
 
     .divisor {

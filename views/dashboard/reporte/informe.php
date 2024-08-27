@@ -27,7 +27,7 @@
                     <th>Falla</th>
                     <th>Comentarios</th>
                     <th>Contador</th>
-                    <th>Fecha Entrega</th>
+                    <th>Fecha Visita</th>
                     <th>Status</th>
                 </tr>
             </thead>

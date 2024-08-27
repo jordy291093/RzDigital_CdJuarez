@@ -2,11 +2,11 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
-use Controllers\ContadorController;
 use MVC\Router;
 use Controllers\LoginController;
 use Controllers\DashboardController;
 use Controllers\InformeController;
+use Controllers\ServicioController;
 
 $router = new Router();
 
@@ -31,23 +31,28 @@ $router->post('/reestablecer', [LoginController::class, 'reestablecer']);
 $router->get('/mensaje', [LoginController::class, 'mensaje']);
 $router->get('/confirmar', [LoginController::class, 'confirmar']);
 
-// Dashboard Reporte
+//          ****   Dashboard   ****
+
 $router->get('/dashboard', [DashboardController::class, 'index']);
+$router->get('/dashboard/vehiculo', [DashboardController::class, 'index_vehiculo']);
+
 $router->get('/crear-cliente', [DashboardController::class, 'crear_cliente']);
 $router->post('/crear-cliente', [DashboardController::class, 'crear_cliente']);
 $router->get('/cliente', [DashboardController::class, 'cliente']);
 
-// API Informes
+$router->get('/crear-vehiculo', [DashboardController::class, 'crear_vehiculo']);
+$router->post('/crear-vehiculo', [DashboardController::class, 'crear_vehiculo']);
+$router->get('/vehiculo', [DashboardController::class, 'vehiculo']);
+
+//          ****   API   ****
 $router->get('/api/informes', [InformeController::class, 'index']);
 $router->post('/api/informe', [InformeController::class, 'crear']);
 $router->post('/api/informe/actualizar', [InformeController::class, 'actualizar']);
-$router->post('/api/informe/eliminar', [InformeController::class, 'eliminar']);
 
-// Dashboard Contador
-$router->get('/dashboard/contador', [ContadorController::class, 'index']);
-$router->get('/crear-contador', [ContadorController::class, 'crear_contador']);
-$router->post('/crear-contador', [ContadorController::class, 'crear_contador']);
-$router->get('/contador', [ContadorController::class, 'contador']);
+$router->get('/api/servicios', [ServicioController::class, 'index']);
+$router->post('/api/servicio', [ServicioController::class, 'crear']);
+$router->post('/api/servicio/actualizar', [ServicioController::class, 'actualizar']);
+
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

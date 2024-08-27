@@ -4,11 +4,19 @@
 .formulario {
     margin-top: 5rem;
 
+    input:not([type="submit"]) {
+        background-color: v.$blanco;
+    }
+    input[type="submit"] {
+        @include m.boton(v.$azul, v.$blanco);
+    }
+
     .grid {
         @include m.tablet {
             @include m.grid(2, 2rem);
         }
     }
+
     .campo {
         display: flex;
         align-items: center;

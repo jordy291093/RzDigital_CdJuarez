@@ -126,6 +126,9 @@ class ActiveRecord {
 
         // debuguear($query);
 
+        // echo json_encode(['sql' => $query]);
+        // return;
+
         $resultado = self::$db->query($query);
         return $resultado;
     }

@@ -1,6 +1,7 @@
 (function(){
     obtenerInformes();
     let informes = [];
+    const PROJECT_URL = 'location.origin';
 
     const nuevoInformeBtn = document.querySelector('#agregar-informe');
     nuevoInformeBtn.addEventListener('click', function() {
@@ -45,7 +46,7 @@
             const tabla = document.querySelector('#tabla');
             tabla.classList.add('mostrar');
 
-            const contenedorInforme = document.createElement('tr');
+            const contenedorInforme = document.createElement('TR');
             contenedorInforme.dataset.informeId = informe.id;
             
             const folio = document.createElement('TD');
@@ -208,7 +209,7 @@
                     </div>
 
                     <div class="campo">
-                        <label for="fechaEnt">Fecha Entrega: </label>
+                        <label for="fechaEnt">Fecha Visita: </label>
                         <input 
                             value="${informe.fechaEnt ? informe.fechaEnt : ''}"
                             placeholder="${informe.fechaEnt ? 'Editar aaaa-mm-dd' : 'aaaa-mm-dd'}" 
@@ -255,15 +256,15 @@
 
             if(e.target.classList.contains('submit-nuevo-informe')) {
                 const informeFolio = document.querySelector('#folio').value.trim();
-                const informeFechaGen = document.querySelector('#fechaGen').value;
-                const informeModelo = document.querySelector('#modelo').value;
-                const informeSerie = document.querySelector('#serie').value;
-                const informeNoParte = document.querySelector('#noParte').value;
-                const informeRefacciones = document.querySelector('#refacciones').value;
-                const informeFalla = document.querySelector('#falla').value;
-                const informeComentarios = document.querySelector('#comentarios').value;
-                const informeContador = document.querySelector('#contador').value;
-                const informeFechaEnt = document.querySelector('#fechaEnt').value;
+                const informeFechaGen = document.querySelector('#fechaGen').value.trim();
+                const informeModelo = document.querySelector('#modelo').value.trim();
+                const informeSerie = document.querySelector('#serie').value.trim();
+                const informeNoParte = document.querySelector('#noParte').value.trim();
+                const informeRefacciones = document.querySelector('#refacciones').value.trim();
+                const informeFalla = document.querySelector('#falla').value.trim();
+                const informeComentarios = document.querySelector('#comentarios').value.trim();
+                const informeContador = document.querySelector('#contador').value.trim();
+                const informeFechaEnt = document.querySelector('#fechaEnt').value.trim();
 
                 const formatoFecha = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -273,55 +274,55 @@
                     informeFalla === '' && informeComentarios === '' &&
                     informeContador === '' && informeFechaEnt === '') {
                     // Mostrar una alerta de error
-                    sweetAlerta('Todos los campos son obligatorios');
+                    sweetAlertaError('Todos los campos son obligatorios');
                     return;
 
                 } else if(informeFolio === '') {
-                    sweetAlerta('Es obligatorio el campo: Folio');
+                    sweetAlertaError('Es obligatorio el campo: Folio');
                     return;
 
                 } else if(informeFechaGen === '') {
-                    sweetAlerta('Es obligatorio el campo: Fecha Generada');
+                    sweetAlertaError('Es obligatorio el campo: Fecha Generada');
                     return;
 
-                } if (!formatoFecha.test(informeFechaGen)) {
-                    sweetAlerta('Formato de fecha inválido en el campo: Fecha Generada. Por favor, use AAAA-MM-DD. Ejemplo: 2024-01-31');
+                } else if (!formatoFecha.test(informeFechaGen)) {
+                    sweetAlertaError('Formato de fecha inválido en el campo: Fecha Generada. Por favor, use AAAA-MM-DD. Ejemplo: 2024-01-31');
                     return;
 
                 } else if(informeModelo === '') {
-                    sweetAlerta('Es obligatorio el campo: Modelo');
+                    sweetAlertaError('Es obligatorio el campo: Modelo');
                     return;
 
                 } else if(informeSerie === '') {
-                    sweetAlerta('Es obligatorio el campo: Serie');
+                    sweetAlertaError('Es obligatorio el campo: Serie');
                     return;
                     
                 } else if(informeNoParte === '') {
-                    sweetAlerta('Es obligatorio el campo: Numero de Parte');
+                    sweetAlertaError('Es obligatorio el campo: Numero de Parte');
                     return;
                     
                 } else if(informeRefacciones === '') {
-                    sweetAlerta('Es obligatorio el campo: Refacciones');
+                    sweetAlertaError('Es obligatorio el campo: Refacciones');
                     return;
                     
                 } else if(informeFalla === '') {
-                    sweetAlerta('Es obligatorio el campo: Falla');
+                    sweetAlertaError('Es obligatorio el campo: Falla');
                     return;
                     
                 } else if(informeComentarios === '') {
-                    sweetAlerta('Es obligatorio el campo: Comentarios');
+                    sweetAlertaError('Es obligatorio el campo: Comentarios');
                     return;
                     
                 } else if(informeContador === '') {
-                    sweetAlerta('Es obligatorio el campo: Contador');
+                    sweetAlertaError('Es obligatorio el campo: Contador');
                     return;
                     
                 } else if(informeFechaEnt === '') {
-                    sweetAlerta('Es obligatorio el campo: Fecha Entrega');
+                    sweetAlertaError('Es obligatorio el campo: Fecha Visita');
                     return;
 
                 } else if (!formatoFecha.test(informeFechaEnt)) {
-                    sweetAlerta('Formato de fecha inválido en el campo: Fecha Entrega. Por favor, use AAAA-MM-DD. Ejemplo: 2024-01-31');
+                    sweetAlertaError('Formato de fecha inválido en el campo: Fecha Entrega. Por favor, use AAAA-MM-DD. Ejemplo: 2024-01-31');
                     return;
                 }
                 
@@ -346,11 +347,21 @@
         document.querySelector('.dashboard').appendChild(modal);
     }
 
-    function sweetAlerta(alerta) {
+    function sweetAlertaError(mensaje) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: alerta,
+            text: mensaje,
+        });
+    }
+
+    function sweetAlertaExito(mensaje) {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1500
         });
     }
 
@@ -388,7 +399,7 @@
         datos.append('clientes_id', obtenerCliente());
 
         try {
-            const url = 'http://localhost:3000/api/informe';
+            const url = `${PROJECT_URL}/api/informe`;
             const respuesta = await fetch(url, {
                 method: 'POST',
                 body: datos
@@ -442,7 +453,7 @@
     }
 
     async function actualizarInforme(informe) {
-        const {clientes_id, comentarios, contador, falla, fechaEnt, fechaGen, folio, id, modelo, noParte, refacciones, serie, status} = informe
+        const {clientes_id, comentarios, contador, falla, fechaEnt, fechaGen, folio, id, modelo, noParte, refacciones, serie, status} = informe;
 
         const datos = new FormData();
         datos.append('comentarios' , comentarios);
@@ -464,21 +475,17 @@
         // }
 
         try {
-            const url = 'http://localhost:3000/api/informe/actualizar';
+            const url = `${PROJECT_URL}/api/informe/actualizar`;
             const respuesta = await fetch(url, {
                 method: 'POST',
                 body: datos
             });
             const resultado = await respuesta.json();
 
-            if(resultado.respuesta.tipo === 'exito') {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: resultado.respuesta.mensaje,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+            if(resultado.respuesta.tipo === 'error') {
+                sweetAlertaError(resultado.mensaje);
+            } else if(resultado.respuesta.tipo === 'exito') {
+                sweetAlertaExito(resultado.respuesta.mensaje);
 
                 const modal = document.querySelector('.modal');
                 if(modal) {

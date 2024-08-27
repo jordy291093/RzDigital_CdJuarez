@@ -45,10 +45,12 @@
                 justify-content: center;
             }
         }
-        .submit-nuevo-informe {
+        .submit-nuevo-informe,
+        .submit-nuevo-servicio {
             @include m.boton(v.$azul, v.$blanco);
         }
-        .cerrar-informe {
+        .cerrar-informe,
+        .cerrar-servicio {
             @include m.boton(v.$rojo, v.$blanco);
         }
 

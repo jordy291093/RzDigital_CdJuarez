@@ -1,0 +1,70 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario {
+    .botones {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    a.cancelar {
+        @include m.boton(v.$rojo, v.$blanco);
+    }
+}
+
+.listado-vehiculos {
+    margin-top: 3rem;
+    list-style: none;
+    padding: 0;
+    @include m.grid(3, 3rem);
+
+    .listado-info {
+        border: solid 2px v.$gris;
+        border-radius: .5rem;
+        padding: 1rem;
+
+        li {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            color: v.$rojo;
+            font-size: 2rem;
+            font-weight: bold;
+
+            span {
+                flex: 0 0 12rem;
+                font-weight: 300;
+                color: v.$gris;
+            }
+
+            &.center {
+                margin-top: 3rem;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.contenedor-nuevo-servicio {
+    display: flex;
+    justify-content: center;
+    
+    .agregar-servicio {
+        @include m.boton(v.$azul, v.$blanco);
+    }
+}
+
+.listado-servicios {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+
+    .no-servicios {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+}
